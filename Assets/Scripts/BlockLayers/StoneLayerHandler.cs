@@ -21,15 +21,15 @@ public class StoneLayerHandler : BlockLayerHandler
 		
 		float stoneNoise = domainWarping.GenerateDomainNoise(chunkData.worldPosition.x + x, chunkData.worldPosition.z + z, stoneNoiseSettings);
 
-		int endPOsition = surfaceHeightNoise;
+		int endPosition = surfaceHeightNoise;
 		if (chunkData.worldPosition.y < 0)
 		{
-			endPOsition = chunkData.worldPosition.y + chunkData.chunkHeight;
+			endPosition = chunkData.worldPosition.y + chunkData.chunkHeight;
 		}
 
 		if (stoneNoise > stoneThreshold)
 		{
-			for (int i = chunkData.worldPosition.y; i <= endPOsition; i++)
+			for (int i = chunkData.worldPosition.y; i <= endPosition; i++)
 			{
 				Vector3Int pos = new Vector3Int(x, i, z);
 				Chunk.SetBlock(chunkData, pos, BlockType.Stone);

@@ -9,6 +9,7 @@ public class ChunkData
 	public Vector3Int worldPosition;
 
 	public bool modifiedByThePlayer = false;
+	public TreeData treeData;
 
 	public ChunkData(int chunkSize, int chunkHeight, World world, Vector3Int worldPosition)
 	{
