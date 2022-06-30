@@ -7,6 +7,9 @@ public class TerrainGenerator : MonoBehaviour
 {
 	public BiomeGenerator biomeGenerator;
 
+	[SerializeField]
+	List<Vector3Int> biomeCenters = new List<Vector3Int>();
+
 	public ChunkData GenerateChunkData(ChunkData data, Vector2Int mapSeedOffset)
 	{
 		TreeData treeData = biomeGenerator.GetTreeData(data, mapSeedOffset);
@@ -23,4 +26,22 @@ public class TerrainGenerator : MonoBehaviour
 
 		return data;
 	}
+
+	public void GenerateBiomePoints(Vector3 playerPosition, int drawRange, int mapSize, Vector2Int mapSeedOffset)
+	{
+		biomeCenters = new List<Vector3Int>();
+		biomeCenters = BiomeCenterFinder.CalculateBiomeCenters(playerPosition, drawRange, mapSize);
+	}
+
+#if UNITY_EDITOR
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+
+		foreach (var biomCenterPoint in biomeCenters)
+		{
+			Gizmos.DrawLine(biomCenterPoint, biomCenterPoint + Vector3.up * 255);
+		}
+	}
+#endif
 }

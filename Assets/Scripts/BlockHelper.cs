@@ -43,7 +43,7 @@ public static class BlockHelper
 
     public static MeshData GetFaceDataIn(Direction direction, ChunkData chunk, int x, int y, int z, MeshData meshData, BlockType blockType)
 	{
-        GetFaceVertices(direction, x, y, z, meshData, blockType);
+        GetFaceVertices(direction, x , y, z, meshData, blockType);
         meshData.AddQuadTriangles(BlockDataManager.blockTextureDataDictionary[blockType].generatesCollider);
         meshData.uv.AddRange(FaceUVs(direction, blockType));
 
